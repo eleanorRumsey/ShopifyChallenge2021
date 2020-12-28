@@ -1,33 +1,16 @@
 import React from 'react';
+import Movie from './movie';
 
 class SearchResults extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-          error: null,
-          isLoaded: false,
-        //   movieResults: []
+            error: null,
+            isLoaded: false,
+            movieResults: this.props.movieResults,
+            nomListService: this.props.nomListService
         };
     }
-
-    // componentDidMount(){
-    //     fetch("http://www.omdbapi.com/?s=*"+ "spiderman" +"*&apikey=c470d743")
-    //     .then(res => res.json())
-    //     .then(
-    //         (result) => {
-    //             this.setState({
-    //                 isLoaded: true,
-    //                 movieResults: result.Search
-    //             });
-    //         },
-    //         (error) => {
-    //             this.setState({
-    //                 isLoaded: true,
-    //                 error
-    //             });
-    //         }
-    //     )
-    // }
 
     render() {
         const { error, isLoaded, movieResults } = this.state;
@@ -42,11 +25,15 @@ class SearchResults extends React.Component {
         } else {
             return (
                 <div>
-                    {/* {this.props.searchValue} */}
                     <ul>
                         {this.props.movieResults.map(movie => (
                             <li key={movie.imdbID}>
-                                {movie.Title}
+                                <Movie 
+                                    title={movie.Title}
+                                    year={movie.Year}
+                                    poster={movie.Poster}
+                                    id={movie.imdbID}
+                                ></Movie>
                             </li>
                         ))}
                     </ul>

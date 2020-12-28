@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchResults from './searchResults';
 
-class SearchBar extends React.Component {
+class Search extends React.Component {
 
     constructor(props) {
         super(props);
@@ -10,6 +10,7 @@ class SearchBar extends React.Component {
           isLoaded: false,
           movieResults: [],
           searchValue: '',
+          nomListService: this.props.nomService
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -18,7 +19,7 @@ class SearchBar extends React.Component {
 
     handleChange(event) {
         this.setState({searchValue: event.target.value});
-        fetch("http://www.omdbapi.com/?s=*"+ event.target.value +"*&apikey=c470d743")
+        fetch("http://www.omdbapi.com/?s=*"+ event.target.value +"*&type=movie&apikey=c470d743")
         .then(res => res.json())
         .then(
             (result) => {
@@ -52,9 +53,10 @@ class SearchBar extends React.Component {
                 </label>
                 <input type="submit" value="Submit" />
             </form>
-            <SearchResults movieResults = {movieResults} />
+            <div>Results for "{searchValue}"</div>
+            <SearchResults movieResults = {movieResults} nomListService = {this.state.nomListService} />
         </div>);
     }
 }
 
-export default SearchBar;
+export default Search;

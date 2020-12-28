@@ -1,11 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
-import SearchBar from './searchBar';
+import User from './user';
+import Search from './search';
+import Header from './header';
+import NominationListService from './nominationListService'
 
 function App() {
+  const nomService = new NominationListService();
+
   return (
     <div className="App">
-      <SearchBar></SearchBar>
+      <User nomService={nomService}></User>
+      <Header></Header>
+      <Search nomService={nomService}></Search>
     </div>
   );
 }
