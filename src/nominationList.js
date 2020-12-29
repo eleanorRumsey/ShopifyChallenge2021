@@ -1,34 +1,28 @@
-import NominationListService from './nominationListService';
 import React from 'react';
+import Movie from './movie';
 
 class NominationList extends React.Component {
-    constructor(props){
+    constructor(props) { //remove
         super(props);
-        this.maxNominations = 5;
-        this.state = {nominations: new Array(this.maxNominations)}
+        this.maxNominations = 5; //make constant and import
     }
 
-    addNomination(movieID){
-        this.setState({
-            nominations: this.state.nominations.concat(movieID)
-        });
-    }
-
-    removeNomination(movieID){
-        var noms = this.state.nominations;
-        var nomIndex = noms.indexOf(movieID);
-
-        if(nomIndex > -1) {
-            noms.splice(nomIndex, 1)
-
-            this.setState({
-                nominations: noms
-            })
-        }
-    }
-
-    isMovieNominated(movieID){
-        return this.state.nominations.includes(movieID);
+    render() {
+        return (
+            <>
+                <h2>Nominations</h2>
+                <ul>
+                    {this.props.nominations.map(movie => (
+                        <li key={movie.imdbID}>
+                            <Movie
+                                movie={movie}
+                                isNominated={true}
+                            ></Movie>
+                        </li>
+                    ))}
+                </ul>
+            </>
+        );
     }
 }
 
