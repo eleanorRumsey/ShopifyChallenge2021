@@ -15,6 +15,7 @@ class Search extends React.Component {
 			movieResults: [],
 			searchValue: "",
 			nominations: [],
+			maxReached: false,
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -55,7 +56,9 @@ class Search extends React.Component {
 				nominations: newNoms,
 			});
 		} else {
-			alert("Maximum reached!");
+			this.setState({
+				maxReached: true,
+			});
 		}
 
 		return this.state.nominations;
@@ -70,6 +73,7 @@ class Search extends React.Component {
 
 			this.setState({
 				nominations: noms,
+				maxReached: false,
 			});
 		}
 	}
@@ -85,6 +89,7 @@ class Search extends React.Component {
 			nominations,
 			isLoaded,
 			error,
+			maxReached,
 		} = this.state;
 
 		return (
@@ -107,7 +112,8 @@ class Search extends React.Component {
 						<NominationList
 							nominations={nominations}
 							removeNomination={this.removeNomination}
-						></NominationList>
+							maxReached={maxReached}
+						/>
 					</Row>
 				</Container>
 			</div>
