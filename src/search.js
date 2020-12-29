@@ -7,7 +7,7 @@ class Search extends React.Component {
     super(props);
     this.state = {
       error: null,
-      isLoaded: false,
+      isLoaded: true,
       movieResults: [],
       searchValue: "",
       nominations: [],
@@ -19,7 +19,10 @@ class Search extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ searchValue: event.target.value });
+    this.setState({
+      searchValue: event.target.value,
+      isLoaded: false,
+    });
     fetch(
       `http://www.omdbapi.com/?s=*${event.target.value}*&type=movie&apikey=c470d743`
     )
@@ -94,6 +97,7 @@ class Search extends React.Component {
           movieResults={movieResults}
           addNomination={this.addNomination}
           isMovieNominated={this.isMovieNominated}
+          searchValue={searchValue}
         />
         <NominationList nominations={nominations}></NominationList>
       </div>
