@@ -87,6 +87,13 @@ class Search extends React.Component {
 		return this.state.nominations.includes(movie);
 	}
 
+	searchValueDisplay(props) {
+		if (this.state.searchValue === "") {
+			return;
+		}
+		return <div>Results for "{this.state.searchValue}"</div>;
+	}
+
 	render() {
 		const {
 			searchValue,
@@ -96,6 +103,13 @@ class Search extends React.Component {
 			error,
 			maxReached,
 		} = this.state;
+
+		let searchValueDisplay =
+			this.state.searchValue === "" ? (
+				<div></div>
+			) : (
+				<div>Results for "{this.state.searchValue}"</div>
+			);
 
 		return (
 			<div>
@@ -113,28 +127,26 @@ class Search extends React.Component {
 						placeholder="Movie title"
 					/>
 				</InputGroup>
-				<div>Results for "{searchValue}"</div>
-				<Container>
-					<Row>
-						<Col>
-							<SearchResults
-								isLoaded={isLoaded}
-								error={error}
-								movieResults={movieResults}
-								addNomination={this.addNomination}
-								isMovieNominated={this.isMovieNominated}
-								searchValue={searchValue}
-							/>
-						</Col>
-						<Col>
-							<NominationList
-								nominations={nominations}
-								removeNomination={this.removeNomination}
-								maxReached={maxReached}
-							/>
-						</Col>
-					</Row>
-				</Container>
+				{searchValueDisplay}
+				<Row>
+					<Col>
+						<SearchResults
+							isLoaded={isLoaded}
+							error={error}
+							movieResults={movieResults}
+							addNomination={this.addNomination}
+							isMovieNominated={this.isMovieNominated}
+							searchValue={searchValue}
+						/>
+					</Col>
+					<Col>
+						<NominationList
+							nominations={nominations}
+							removeNomination={this.removeNomination}
+							maxReached={maxReached}
+						/>
+					</Col>
+				</Row>
 			</div>
 		);
 	}

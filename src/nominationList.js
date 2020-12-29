@@ -1,7 +1,6 @@
 import React from "react";
 import Movie from "./movie";
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import { MAX_NOMINATIONS } from "./search";
