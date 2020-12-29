@@ -3,8 +3,13 @@ import NominationList from "./nominationList";
 import SearchResults from "./searchResults";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const maxNominations = 5;
+export const MAX_NOMINATIONS = 5;
 
 class Search extends React.Component {
 	constructor(props) {
@@ -50,7 +55,7 @@ class Search extends React.Component {
 	}
 
 	addNomination(movie) {
-		if (this.state.nominations.length < maxNominations) {
+		if (this.state.nominations.length < MAX_NOMINATIONS) {
 			const newNoms = this.state.nominations.concat(movie);
 			this.setState({
 				nominations: newNoms,
@@ -94,26 +99,40 @@ class Search extends React.Component {
 
 		return (
 			<div>
-				<label>
-					Name:
-					<input type="text" value={searchValue} onChange={this.handleChange} />
-				</label>
+				<InputGroup>
+					<InputGroup.Prepend>
+						<InputGroup.Text className="search-input-prepend">
+							<FontAwesomeIcon icon={faSearch} />
+						</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl
+						className="search-input"
+						type="text"
+						value={searchValue}
+						onChange={this.handleChange}
+						placeholder="Movie title"
+					/>
+				</InputGroup>
 				<div>Results for "{searchValue}"</div>
 				<Container>
 					<Row>
-						<SearchResults
-							isLoaded={isLoaded}
-							error={error}
-							movieResults={movieResults}
-							addNomination={this.addNomination}
-							isMovieNominated={this.isMovieNominated}
-							searchValue={searchValue}
-						/>
-						<NominationList
-							nominations={nominations}
-							removeNomination={this.removeNomination}
-							maxReached={maxReached}
-						/>
+						<Col>
+							<SearchResults
+								isLoaded={isLoaded}
+								error={error}
+								movieResults={movieResults}
+								addNomination={this.addNomination}
+								isMovieNominated={this.isMovieNominated}
+								searchValue={searchValue}
+							/>
+						</Col>
+						<Col>
+							<NominationList
+								nominations={nominations}
+								removeNomination={this.removeNomination}
+								maxReached={maxReached}
+							/>
+						</Col>
 					</Row>
 				</Container>
 			</div>

@@ -1,8 +1,10 @@
 import React from "react";
 import Movie from "./movie";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
+import { MAX_NOMINATIONS } from "./search";
 
 class NominationList extends React.Component {
 	removeNomination(movie) {
@@ -12,7 +14,12 @@ class NominationList extends React.Component {
 	render() {
 		return (
 			<Col>
-				<h2>Nominations</h2>
+				<div>
+					<h2>Nominations</h2>
+					<div>
+						{this.props.nominations.length} of {MAX_NOMINATIONS}
+					</div>
+				</div>
 				<Alert variant={"warning"} show={this.props.maxReached}>
 					Maximum reached
 				</Alert>
