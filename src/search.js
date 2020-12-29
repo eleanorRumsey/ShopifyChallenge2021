@@ -2,6 +2,8 @@ import React from "react";
 import NominationList from "./nominationList";
 import SearchResults from "./searchResults";
 
+const maxNominations = 5;
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -44,15 +46,15 @@ class Search extends React.Component {
   }
 
   addNomination(movie) {
-    // if(this.state.nominations.length <= this.maxNominations){
-    const newNoms = this.state.nominations.concat(movie);
-    this.setState({
-      nominations: newNoms,
-    });
-    // }
-    // else {
-    // alert("Maximum reached!");
-    // }
+    console.log(this.state.nominations.length);
+    if (this.state.nominations.length < maxNominations) {
+      const newNoms = this.state.nominations.concat(movie);
+      this.setState({
+        nominations: newNoms,
+      });
+    } else {
+      alert("Maximum reached!");
+    }
 
     // console.log(this.state.nominations);
     return this.state.nominations;
