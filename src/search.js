@@ -42,12 +42,14 @@ class Search extends React.Component {
 			currentPage: 1,
 		});
 
-		this.getMovieResultsPage();
+		this.getMovieResultsPage(event.target.value);
 	}
 
-	getMovieResultsPage() {
+	getMovieResultsPage(value) {
+		const searchVal = value.trim();
+
 		fetch(
-			`http://www.omdbapi.com/?s=*${this.state.searchValue}*&type=movie&page=${this.state.currentPage}&apikey=c470d743`
+			`http://www.omdbapi.com/?s=*${searchVal}*&type=movie&page=${this.state.currentPage}&apikey=c470d743`
 		)
 			.then((res) => res.json())
 			.then(
