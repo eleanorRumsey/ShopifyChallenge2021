@@ -1,6 +1,7 @@
 import React from "react";
 import Movie from "./movie";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
 
 class SearchResults extends React.Component {
 	nominate(movie) {
@@ -26,19 +27,21 @@ class SearchResults extends React.Component {
 		} else {
 			return (
 				<div>
-					<ul>
+					<ul className="movie-list">
 						{this.props.movieResults.map((movie) => (
 							<li key={movie.imdbID}>
-								<Movie
-									movie={movie}
-									addNomination={this.props.addNomination}
-								></Movie>
-								<Button
-									onClick={() => this.nominate(movie)}
-									disabled={this.isMovieNominated(movie)}
-								>
-									Nominate
-								</Button>
+								<div className="movie-container">
+									<Movie
+										movie={movie}
+										addNomination={this.props.addNomination}
+									></Movie>
+									<Button
+										onClick={() => this.nominate(movie)}
+										disabled={this.isMovieNominated(movie)}
+									>
+										Nominate
+									</Button>
+								</div>
 							</li>
 						))}
 					</ul>

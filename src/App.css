@@ -30,6 +30,44 @@
 	border-color: #ced4da !important;
 }
 
+.search-and-noms {
+	display: flex;
+	flex-direction: row;
+}
+
+.movie-list {
+	margin-top: 1.5em;
+	list-style-type: none;
+	padding-inline-start: 0;
+}
+
+.movie-container {
+	display: flex;
+	justify-content: space-between;
+	margin: 0.5em 0;
+}
+
+.delete-btn-container {
+	display: flex;
+	align-items: center;
+}
+
+.delete-nom {
+	border-radius: 50% !important;
+}
+
+.nomination-list {
+	border: solid 1px coral;
+	border-radius: 1em;
+	padding: 1em;
+	height: 100%;
+}
+
+.pagination-display {
+	display: flex;
+	flex-direction: row;
+}
+
 @media (prefers-reduced-motion: no-preference) {
 	.App-logo {
 		animation: App-logo-spin infinite 20s linear;
