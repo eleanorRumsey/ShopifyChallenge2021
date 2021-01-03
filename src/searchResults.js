@@ -38,6 +38,7 @@ class SearchResults extends React.Component {
 									<Button
 										onClick={() => this.nominate(movie)}
 										disabled={this.isMovieNominated(movie)}
+										className="nominate-btn"
 									>
 										Nominate
 									</Button>

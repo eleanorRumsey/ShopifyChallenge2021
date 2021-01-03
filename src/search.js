@@ -178,7 +178,7 @@ class Search extends React.Component {
 
 		return (
 			<div className="search-and-noms">
-				<Col>
+				<Col xs={8}>
 					<InputGroup size="lg">
 						<InputGroup.Prepend>
 							<InputGroup.Text className="search-input-prepend">
@@ -193,7 +193,7 @@ class Search extends React.Component {
 							placeholder="Movie title"
 						/>
 					</InputGroup>
-					{searchValueDisplay}
+					<div className="search-val-display">{searchValueDisplay}</div>
 					<SearchResults
 						isLoaded={isLoaded}
 						error={error}

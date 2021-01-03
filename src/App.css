@@ -3,31 +3,32 @@
 }
 
 .header {
-	margin-bottom: 3em;
+	margin-bottom: 1.5em;
 }
 
 .hidden {
 	visibility: hidden;
 }
 
-.App-logo {
-	height: 40vmin;
-	pointer-events: none;
-}
-
 .search-input-prepend {
 	background-color: rgba(255, 255, 255, 0) !important;
 	border-right: none !important;
+	border-radius: 1em 0 0 1em !important;
 }
 
 .search-input {
 	border-left: none !important;
 	transition: none !important;
+	border-radius: 0 1em 1em 0 !important;
 }
 
 .search-input:focus {
 	box-shadow: none !important;
 	border-color: #ced4da !important;
+}
+
+.search-val-display {
+	margin-top: 1em;
 }
 
 .search-and-noms {
@@ -36,15 +37,44 @@
 }
 
 .movie-list {
-	margin-top: 1.5em;
 	list-style-type: none;
 	padding-inline-start: 0;
+	height: 85em;
 }
 
 .movie-container {
 	display: flex;
 	justify-content: space-between;
 	margin: 0.5em 0;
+	align-items: center;
+}
+
+/* .grow {
+	transition: all 0.2s ease-in-out;
+}
+
+.grow:hover {
+	transform: scale(1.1);
+} */
+
+.movie {
+	display: flex;
+	flex-direction: row;
+	height: 8em;
+}
+
+.movie-poster {
+	width: 5em;
+}
+
+.movie-info {
+	display: flex;
+	flex-direction: column;
+	padding: 1em;
+}
+
+.nominate-btn {
+	height: 2.5em;
 }
 
 .delete-btn-container {
@@ -66,19 +96,4 @@
 .pagination-display {
 	display: flex;
 	flex-direction: row;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
-	}
-}
-
-@keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
 }
