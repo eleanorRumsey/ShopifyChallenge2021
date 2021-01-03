@@ -23,7 +23,7 @@ class NominationList extends React.Component {
 				<Alert variant={"warning"} show={this.props.maxReached}>
 					Maximum reached
 				</Alert>
-				<ul class="movie-list">
+				<ul className="movie-list">
 					{this.props.nominations.map((movie) => (
 						<li key={movie.imdbID}>
 							<Row className="movie-container">

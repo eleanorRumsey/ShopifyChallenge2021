@@ -23,9 +23,8 @@ class Search extends React.Component {
 			totalResults: 0,
 			searchValue: "",
 			nominations: [],
-			maxReached: false,
+			maxNomsReached: false,
 			currentPage: 1,
-			resultsRendered: 0,
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -41,7 +40,6 @@ class Search extends React.Component {
 			searchValue: event.target.value,
 			isLoaded: false,
 			currentPage: 1,
-			resultsRendered: 0,
 		});
 
 		this.getMovieResultsPage();
@@ -66,15 +64,7 @@ class Search extends React.Component {
 						error,
 					});
 				}
-			)
-			.then(() => {
-				if (this.state.movieResults !== undefined) {
-					this.setState({
-						resultsRendered:
-							this.state.resultsRendered + this.state.movieResults.length,
-					});
-				}
-			});
+			);
 	}
 
 	clickNext() {
@@ -133,11 +123,17 @@ class Search extends React.Component {
 	}
 
 	paginationComponent() {
-		if (this.state.resultsRendered === 0 || this.state.searchValue === "") {
+		if (this.state.searchValue === "" || this.state.totalResults === 0) {
 			return;
 		}
 
-		let nextPageExists = this.state.resultsRendered < this.state.totalResults;
+		let totalPages = Math.ceil(this.state.totalResults / 10);
+
+		if (totalPages < 1) {
+			totalPages = 1;
+		}
+
+		let nextPageExists = this.state.currentPage < totalPages;
 		let prevPageExists = this.state.currentPage > 1;
 
 		let nextButton = (
@@ -151,12 +147,6 @@ class Search extends React.Component {
 				Previous
 			</Button>
 		);
-
-		let totalPages = Math.ceil(this.state.totalResults / 10);
-
-		if (totalPages < 1) {
-			totalPages = 1;
-		}
 
 		return (
 			<div className="pagination-display">
@@ -176,7 +166,7 @@ class Search extends React.Component {
 			nominations,
 			isLoaded,
 			error,
-			maxReached,
+			maxNomsReached: maxReached,
 		} = this.state;
 
 		let searchValueDisplay =
@@ -212,7 +202,6 @@ class Search extends React.Component {
 						isMovieNominated={this.isMovieNominated}
 						searchValue={searchValue}
 					/>
-
 					{this.paginationComponent()}
 				</Col>
 				<Col>
