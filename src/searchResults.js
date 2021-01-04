@@ -30,19 +30,11 @@ class SearchResults extends React.Component {
 					<ul className="movie-list">
 						{this.props.movieResults.map((movie) => (
 							<li key={movie.imdbID}>
-								<div className="movie-container">
-									<Movie
-										movie={movie}
-										addNomination={this.props.addNomination}
-									></Movie>
-									<Button
-										onClick={() => this.nominate(movie)}
-										disabled={this.isMovieNominated(movie)}
-										className="nominate-btn"
-									>
-										Nominate
-									</Button>
-								</div>
+								<Movie
+									movie={movie}
+									nominate={this.props.addNomination}
+									disabled={this.isMovieNominated(movie)}
+								/>
 							</li>
 						))}
 					</ul>

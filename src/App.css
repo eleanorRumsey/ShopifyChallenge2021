@@ -45,22 +45,22 @@
 .movie-container {
 	display: flex;
 	justify-content: space-between;
-	margin: 0.5em 0;
 	align-items: center;
 }
 
-/* .grow {
+.grow {
 	transition: all 0.2s ease-in-out;
 }
 
 .grow:hover {
 	transform: scale(1.1);
-} */
+}
 
 .movie {
 	display: flex;
 	flex-direction: row;
-	height: 8em;
+	/* height: 8em; */
+	align-items: center;
 }
 
 .movie-poster {
