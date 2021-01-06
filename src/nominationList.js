@@ -14,6 +14,10 @@ class NominationList extends React.Component {
 		this.props.removeNomination(movie);
 	}
 
+	getNomKey(id) {
+		return id + "-nom";
+	}
+
 	render() {
 		return (
 			<Col className="nomination-list">
@@ -28,7 +32,7 @@ class NominationList extends React.Component {
 				</Alert>
 				<ul className="movie-list">
 					{this.props.nominations.map((movie) => (
-						<li key={movie.imdbID}>
+						<li key={this.getNomKey(this.getNomKey(movie.imdbID))}>
 							<div className="nomination-container">
 								<div>{movie.Title}</div>
 								<div className="delete-btn-container">

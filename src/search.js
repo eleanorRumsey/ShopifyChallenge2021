@@ -94,7 +94,9 @@ class Search extends React.Component {
 	}
 
 	addNomination(movie) {
-		if (this.state.nominations.length < MAX_NOMINATIONS) {
+		if (this.isMovieNominated(movie)) {
+			return;
+		} else if (this.state.nominations.length < MAX_NOMINATIONS) {
 			const newNoms = this.state.nominations.concat(movie);
 			this.setState({
 				nominations: newNoms,
@@ -104,8 +106,6 @@ class Search extends React.Component {
 				maxNomsReached: true,
 			});
 		}
-
-		return this.state.nominations;
 	}
 
 	removeNomination(movie) {
@@ -123,7 +123,9 @@ class Search extends React.Component {
 	}
 
 	isMovieNominated(movie) {
-		return this.state.nominations.includes(movie);
+		return this.state.nominations.some(
+			(nomination) => nomination.imdbID === movie.imdbID
+		);
 	}
 
 	paginationComponent() {
