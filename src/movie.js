@@ -93,7 +93,7 @@ class Movie extends React.Component {
 	}
 
 	render() {
-		let nomBtnVariant = this.props.disabled ? "success" : "primary";
+		let nomBtnVariant = this.props.disabled ? "success" : "dark";
 		let nomBtnText = this.props.disabled ? "Nominated" : "Nominate";
 
 		let details = (
