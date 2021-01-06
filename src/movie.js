@@ -4,6 +4,9 @@ import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Collapse from "react-bootstrap/esm/Collapse";
+import Badge from "react-bootstrap/Badge";
+import Spinner from "react-bootstrap/Spinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Movie extends React.Component {
 	constructor(props) {
@@ -11,7 +14,7 @@ class Movie extends React.Component {
 		this.state = {
 			hovered: false,
 			activeKey: "",
-			details: <div></div>,
+			details: <Spinner animation="border" />,
 		};
 
 		this.getMovieDetails = this.getMovieDetails.bind(this);
@@ -27,18 +30,7 @@ class Movie extends React.Component {
 				(result) => {
 					this.setState({
 						isLoaded: true,
-						details: (
-							<div>
-								<div>{result.Rated}</div>
-								<div>{result.Runtime}</div>
-								<div>{result.Plot}</div>
-								<div>
-									<b>Director:</b>
-									{result.Director}
-								</div>
-								<div>{this.Actors}</div>
-							</div>
-						),
+						details: this.formatDetails(result),
 					});
 				},
 				(error) => {
@@ -48,6 +40,26 @@ class Movie extends React.Component {
 					});
 				}
 			);
+	}
+
+	formatDetails(details) {
+		return (
+			<div>
+				<div>
+					<Badge variant="secondary">{details.Rated}</Badge>
+					{details.Runtime}
+				</div>
+				<div>{details.Plot}</div>
+				<div>
+					<b>Director: </b>
+					{details.Director}
+				</div>
+				<div>
+					<b>Cast: </b>
+					{details.Actors}
+				</div>
+			</div>
+		);
 	}
 
 	showDetails() {

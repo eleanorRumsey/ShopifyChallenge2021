@@ -7,6 +7,7 @@ import Alert from "react-bootstrap/Alert";
 import { MAX_NOMINATIONS } from "./search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import Toast from "react-bootstrap/Toast";
 
 class NominationList extends React.Component {
 	removeNomination(movie) {
@@ -17,7 +18,7 @@ class NominationList extends React.Component {
 		return (
 			<Col className="nomination-list">
 				<div className="nominations-title">
-					<h2>Nominations</h2>
+					<h4>Nominations</h4>
 					<div>
 						{this.props.nominations.length} of {MAX_NOMINATIONS}
 					</div>
