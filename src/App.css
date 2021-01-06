@@ -27,8 +27,22 @@
 	border-color: #ced4da !important;
 }
 
-.search-val-display {
-	margin-top: 1em;
+.search-val-and-pagination {
+	margin: 1em 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 14px;
+}
+
+.pagination-display {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.pagination-text {
+	margin: 0 1em;
 }
 
 .search-and-noms {
@@ -74,7 +88,6 @@
 .movie {
 	display: flex;
 	flex-direction: row;
-	/* height: 8em; */
 	align-items: center;
 }
 
@@ -106,7 +119,7 @@
 	margin-left: 1em;
 }
 
-.delete-nom {
+.round-btn {
 	border-radius: 50% !important;
 }
 
@@ -115,9 +128,4 @@
 	border-radius: 1em;
 	padding: 1em;
 	height: 100%;
-}
-
-.pagination-display {
-	display: flex;
-	flex-direction: row;
 }

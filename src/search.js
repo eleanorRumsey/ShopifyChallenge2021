@@ -9,7 +9,11 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Form from "react-bootstrap/Form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+	faSearch,
+	faArrowRight,
+	faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const MAX_NOMINATIONS = 5;
 
@@ -123,7 +127,11 @@ class Search extends React.Component {
 	}
 
 	paginationComponent() {
-		if (this.state.searchValue === "" || this.state.totalResults === 0) {
+		if (
+			this.state.searchValue === "" ||
+			this.state.totalResults === 0 ||
+			isNaN(this.state.totalResults)
+		) {
 			return;
 		}
 
@@ -137,21 +145,31 @@ class Search extends React.Component {
 		let prevPageExists = this.state.currentPage > 1;
 
 		let nextButton = (
-			<Button onClick={this.clickNext} disabled={!nextPageExists}>
-				Next
+			<Button
+				onClick={this.clickNext}
+				disabled={!nextPageExists}
+				variant="light"
+				className="round-btn"
+			>
+				<FontAwesomeIcon icon={faArrowRight} />
 			</Button>
 		);
 
 		let prevButton = (
-			<Button onClick={this.clickPrevious} disabled={!prevPageExists}>
-				Previous
+			<Button
+				onClick={this.clickPrevious}
+				disabled={!prevPageExists}
+				variant="light"
+				className="round-btn"
+			>
+				<FontAwesomeIcon icon={faArrowLeft} />
 			</Button>
 		);
 
 		return (
 			<div className="pagination-display">
 				{prevButton}
-				<div>
+				<div className="pagination-text">
 					Page {this.state.currentPage} of {totalPages}
 				</div>
 				{nextButton}
@@ -193,7 +211,10 @@ class Search extends React.Component {
 							placeholder="Movie title"
 						/>
 					</InputGroup>
-					<div className="search-val-display">{searchValueDisplay}</div>
+					<div className="search-val-and-pagination">
+						{searchValueDisplay}
+						{this.paginationComponent()}
+					</div>
 					<SearchResults
 						isLoaded={isLoaded}
 						error={error}
@@ -202,7 +223,6 @@ class Search extends React.Component {
 						isMovieNominated={this.isMovieNominated}
 						searchValue={searchValue}
 					/>
-					{this.paginationComponent()}
 				</Col>
 				<Col>
 					<NominationList

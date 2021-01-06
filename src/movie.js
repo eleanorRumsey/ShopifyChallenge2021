@@ -88,7 +88,7 @@ class Movie extends React.Component {
 
 		return (
 			<>
-				<Card className="grow">
+				<Card>
 					<Accordion.Toggle
 						className="movie-header"
 						as={Card.Header}
