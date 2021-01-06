@@ -53,24 +53,19 @@ class SearchResults extends React.Component {
 			return <div className="results-message">No results found</div>;
 		} else {
 			return (
-				<div>
-					<Accordion
-						activeKey={this.state.activeKey}
-						className="search-results"
-					>
-						<ul className="movie-list">
-							{this.props.movieResults.map((movie) => (
-								<li key={movie.imdbID}>
-									<Movie
-										movie={movie}
-										nominate={this.props.addNomination}
-										disabled={this.isMovieNominated(movie)}
-										setActiveKey={this.setActiveKey}
-									/>
-								</li>
-							))}
-						</ul>
-					</Accordion>
+				<div className="search-results">
+					<ul className="movie-list">
+						{this.props.movieResults.map((movie) => (
+							<li key={movie.imdbID}>
+								<Movie
+									movie={movie}
+									nominate={this.props.addNomination}
+									disabled={this.isMovieNominated(movie)}
+									setActiveKey={this.setActiveKey}
+								/>
+							</li>
+						))}
+					</ul>
 				</div>
 			);
 		}

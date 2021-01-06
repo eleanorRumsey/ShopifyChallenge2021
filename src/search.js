@@ -152,6 +152,7 @@ class Search extends React.Component {
 				disabled={!nextPageExists}
 				variant="light"
 				className="round-btn"
+				size="sm"
 			>
 				<FontAwesomeIcon icon={faArrowRight} />
 			</Button>
@@ -163,6 +164,7 @@ class Search extends React.Component {
 				disabled={!prevPageExists}
 				variant="light"
 				className="round-btn"
+				size="sm"
 			>
 				<FontAwesomeIcon icon={faArrowLeft} />
 			</Button>

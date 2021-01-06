@@ -40,6 +40,7 @@ class NominationList extends React.Component {
 										onClick={() => this.removeNomination(movie)}
 										variant="light"
 										className="round-btn"
+										size="sm"
 									>
 										<FontAwesomeIcon icon={faTimes} />
 									</Button>
