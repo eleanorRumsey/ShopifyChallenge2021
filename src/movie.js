@@ -83,15 +83,18 @@ class Movie extends React.Component {
 	}
 
 	render() {
+		let nomBtnVariant = this.props.disabled ? "success" : "primary";
+		let nomBtnText = this.props.disabled ? "Nominated" : "Nominate";
+
 		return (
 			<>
-				{/* <Accordion activeKey={this.state.activeKey}> */}
 				<Card className="grow">
 					<Accordion.Toggle
+						className="movie-header"
 						as={Card.Header}
 						eventKey={this.props.movie.imdbID}
 						onClick={this.showDetails}
-						onMouseEnter={this.showDetails}
+						// onMouseEnter={this.showDetails}
 					>
 						<div className="movie-container">
 							<div className="movie">
@@ -103,7 +106,7 @@ class Movie extends React.Component {
 									/>
 								</div>
 								<div className="movie-info">
-									<h4>{this.props.movie.Title}</h4>
+									<div className="movie-title">{this.props.movie.Title}</div>
 									<div>({this.props.movie.Year})</div>
 								</div>
 							</div>
@@ -111,19 +114,19 @@ class Movie extends React.Component {
 								onClick={this.nominate}
 								disabled={this.props.disabled}
 								className="nominate-btn"
+								variant={nomBtnVariant}
 							>
-								Nominate
+								{nomBtnText}
 							</Button>
 						</div>
 					</Accordion.Toggle>
 					<Accordion.Collapse
 						eventKey={this.props.movie.imdbID}
-						onMouseLeave={this.hideDetails}
+						// onMouseLeave={this.hideDetails}
 					>
 						<Card.Body>{this.state.details}</Card.Body>
 					</Accordion.Collapse>
 				</Card>
-				{/* </Accordion> */}
 				{/* <div className="movie-container" onMouseEnter={this.showDetails}>
 					<div
 						className="movie"

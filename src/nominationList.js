@@ -16,17 +16,19 @@ class NominationList extends React.Component {
 	render() {
 		return (
 			<Col className="nomination-list">
-				<h2>Nominations</h2>
-				<div>
-					{this.props.nominations.length} of {MAX_NOMINATIONS}
+				<div className="nominations-title">
+					<h2>Nominations</h2>
+					<div>
+						{this.props.nominations.length} of {MAX_NOMINATIONS}
+					</div>
 				</div>
 				<Alert variant={"warning"} show={this.props.maxReached}>
-					Maximum reached
+					You may only nominate 5 movies
 				</Alert>
 				<ul className="movie-list">
 					{this.props.nominations.map((movie) => (
 						<li key={movie.imdbID}>
-							<div className="movie-container">
+							<div className="nomination-container">
 								<div>{movie.Title}</div>
 								<div className="delete-btn-container">
 									<Button

@@ -43,7 +43,10 @@ class SearchResults extends React.Component {
 		} else {
 			return (
 				<div>
-					<Accordion activeKey={this.state.activeKey}>
+					<Accordion
+						activeKey={this.state.activeKey}
+						className="search-results"
+					>
 						<ul className="movie-list">
 							{this.props.movieResults.map((movie) => (
 								<li key={movie.imdbID}>

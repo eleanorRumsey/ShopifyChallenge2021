@@ -42,14 +42,14 @@ class Search extends React.Component {
 			currentPage: 1,
 		});
 
-		this.getMovieResultsPage(event.target.value);
+		this.getMovieResultsPage(event.target.value, 1);
 	}
 
-	getMovieResultsPage(value) {
+	getMovieResultsPage(value, page) {
 		const searchVal = value.trim();
 
 		fetch(
-			`http://www.omdbapi.com/?s=*${searchVal}*&type=movie&page=${this.state.currentPage}&apikey=c470d743`
+			`http://www.omdbapi.com/?s=*${searchVal}*&type=movie&page=${page}&apikey=c470d743`
 		)
 			.then((res) => res.json())
 			.then(
@@ -72,23 +72,21 @@ class Search extends React.Component {
 	clickNext() {
 		const nextPage = this.state.currentPage + 1;
 
-		this.setState(
-			{
-				currentPage: nextPage,
-			},
-			() => this.getMovieResultsPage()
-		);
+		this.setState({
+			currentPage: nextPage,
+		});
+
+		this.getMovieResultsPage(this.state.searchValue, nextPage);
 	}
 
 	clickPrevious() {
 		const previousPage = this.state.currentPage - 1;
 
-		this.setState(
-			{
-				currentPage: previousPage,
-			},
-			() => this.getMovieResultsPage()
-		);
+		this.setState({
+			currentPage: previousPage,
+		});
+
+		this.getMovieResultsPage(this.state.searchValue, previousPage);
 	}
 
 	addNomination(movie) {
@@ -99,7 +97,7 @@ class Search extends React.Component {
 			});
 		} else {
 			this.setState({
-				maxReached: true,
+				maxNomsReached: true,
 			});
 		}
 
@@ -115,7 +113,7 @@ class Search extends React.Component {
 
 			this.setState({
 				nominations: noms,
-				maxReached: false,
+				maxNomsReached: false,
 			});
 		}
 	}
@@ -168,7 +166,7 @@ class Search extends React.Component {
 			nominations,
 			isLoaded,
 			error,
-			maxNomsReached: maxReached,
+			maxNomsReached,
 		} = this.state;
 
 		let searchValueDisplay =
@@ -210,7 +208,7 @@ class Search extends React.Component {
 					<NominationList
 						nominations={nominations}
 						removeNomination={this.removeNomination}
-						maxReached={maxReached}
+						maxReached={maxNomsReached}
 					/>
 				</Col>
 			</div>
