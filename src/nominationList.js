@@ -26,8 +26,8 @@ class NominationList extends React.Component {
 				<ul className="movie-list">
 					{this.props.nominations.map((movie) => (
 						<li key={movie.imdbID}>
-							<Row className="movie-container">
-								<Movie movie={movie} isNominated={true}></Movie>
+							<div className="movie-container">
+								<div>{movie.Title}</div>
 								<div className="delete-btn-container">
 									<Button
 										onClick={() => this.removeNomination(movie)}
@@ -37,7 +37,7 @@ class NominationList extends React.Component {
 										<FontAwesomeIcon icon={faTimes} />
 									</Button>
 								</div>
-							</Row>
+							</div>
 						</li>
 					))}
 				</ul>

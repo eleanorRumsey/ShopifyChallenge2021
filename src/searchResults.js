@@ -2,14 +2,30 @@ import React from "react";
 import Movie from "./movie";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
+import Accordion from "react-bootstrap/Accordion";
 
 class SearchResults extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			activeKey: "",
+		};
+
+		this.setActiveKey = this.setActiveKey.bind(this);
+	}
+
 	nominate(movie) {
 		this.props.addNomination(movie);
 	}
 
 	isMovieNominated(movie) {
 		return this.props.isMovieNominated(movie);
+	}
+
+	setActiveKey(key) {
+		this.setState({
+			activeKey: key,
+		});
 	}
 
 	render() {
@@ -27,17 +43,20 @@ class SearchResults extends React.Component {
 		} else {
 			return (
 				<div>
-					<ul className="movie-list">
-						{this.props.movieResults.map((movie) => (
-							<li key={movie.imdbID}>
-								<Movie
-									movie={movie}
-									nominate={this.props.addNomination}
-									disabled={this.isMovieNominated(movie)}
-								/>
-							</li>
-						))}
-					</ul>
+					<Accordion activeKey={this.state.activeKey}>
+						<ul className="movie-list">
+							{this.props.movieResults.map((movie) => (
+								<li key={movie.imdbID}>
+									<Movie
+										movie={movie}
+										nominate={this.props.addNomination}
+										disabled={this.isMovieNominated(movie)}
+										setActiveKey={this.setActiveKey}
+									/>
+								</li>
+							))}
+						</ul>
+					</Accordion>
 				</div>
 			);
 		}

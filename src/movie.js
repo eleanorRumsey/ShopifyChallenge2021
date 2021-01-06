@@ -62,6 +62,8 @@ class Movie extends React.Component {
 			activeKey: newActiveKey,
 		});
 
+		this.setActiveKey(newActiveKey);
+
 		this.getMovieDetails(this.props.movie.imdbID);
 	}
 
@@ -76,48 +78,52 @@ class Movie extends React.Component {
 		this.props.nominate(this.props.movie);
 	}
 
+	setActiveKey(key) {
+		this.props.setActiveKey(key);
+	}
+
 	render() {
 		return (
 			<>
-				<Accordion activeKey={this.state.activeKey}>
-					<Card>
-						<Accordion.Toggle
-							as={Card.Header}
-							eventKey={this.props.movie.imdbID}
-							onClick={this.showDetails}
-							onMouseEnter={this.showDetails}
-						>
-							<div className="movie-container">
-								<div className="movie">
-									<div>
-										<img
-											src={this.props.movie.Poster}
-											alt={this.props.movie.Title}
-											className="movie-poster"
-										/>
-									</div>
-									<div className="movie-info">
-										<h4>{this.props.movie.Title}</h4>
-										<div>({this.props.movie.Year})</div>
-									</div>
+				{/* <Accordion activeKey={this.state.activeKey}> */}
+				<Card className="grow">
+					<Accordion.Toggle
+						as={Card.Header}
+						eventKey={this.props.movie.imdbID}
+						onClick={this.showDetails}
+						onMouseEnter={this.showDetails}
+					>
+						<div className="movie-container">
+							<div className="movie">
+								<div>
+									<img
+										src={this.props.movie.Poster}
+										alt={this.props.movie.Title}
+										className="movie-poster"
+									/>
 								</div>
-								<Button
-									onClick={this.nominate}
-									disabled={this.props.disabled}
-									className="nominate-btn"
-								>
-									Nominate
-								</Button>
+								<div className="movie-info">
+									<h4>{this.props.movie.Title}</h4>
+									<div>({this.props.movie.Year})</div>
+								</div>
 							</div>
-						</Accordion.Toggle>
-						<Accordion.Collapse
-							eventKey={this.props.movie.imdbID}
-							onMouseLeave={this.hideDetails}
-						>
-							<Card.Body>{this.state.details}</Card.Body>
-						</Accordion.Collapse>
-					</Card>
-				</Accordion>
+							<Button
+								onClick={this.nominate}
+								disabled={this.props.disabled}
+								className="nominate-btn"
+							>
+								Nominate
+							</Button>
+						</div>
+					</Accordion.Toggle>
+					<Accordion.Collapse
+						eventKey={this.props.movie.imdbID}
+						onMouseLeave={this.hideDetails}
+					>
+						<Card.Body>{this.state.details}</Card.Body>
+					</Accordion.Collapse>
+				</Card>
+				{/* </Accordion> */}
 				{/* <div className="movie-container" onMouseEnter={this.showDetails}>
 					<div
 						className="movie"

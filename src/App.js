@@ -5,6 +5,8 @@ import Search from "./search";
 import Header from "./header";
 
 function App() {
+	// TODO: green checkmark
+
 	return (
 		<div className="App">
 			<Header></Header>
