@@ -1,3 +1,8 @@
+body {
+	background-color: #0a0a0a !important;
+	color: #e6e6e6 !important;
+}
+
 .App {
 	padding: 4em 6em;
 }
@@ -12,7 +17,7 @@
 }
 
 .search-input-prepend {
-	background-color: rgba(255, 255, 255, 0) !important;
+	background-color: #fff !important;
 	border-right: none !important;
 	border-radius: 1em 0 0 1em !important;
 }
@@ -87,11 +92,7 @@
 	flex-direction: column;
 	width: 10em;
 	height: 100%;
-	padding-bottom: 1em;
-}
-
-.popover {
-	/* background-color: red !important; */
+	padding: 0.5em;
 }
 
 .nomination-container {
@@ -103,19 +104,12 @@
 	text-align: center;
 }
 
-.grow {
-	transition: all 0.2s ease-in-out;
-}
-
-.grow:hover {
-	transform: scale(1.05);
-}
-
 .movie {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	overflow: hidden;
+	background-color: #0a0a0a !important;
 }
 
 .movie-poster {
@@ -127,6 +121,10 @@
 .movie-info {
 	display: flex;
 	flex-direction: column;
+}
+
+.popover {
+	color: #0a0a0a;
 }
 
 .nominate-btn {
@@ -148,5 +146,6 @@
 	border: solid 1px #ced4da;
 	border-radius: 1em;
 	padding: 1em;
-	height: 100%;
+	background-color: #fff;
+	color: #0a0a0a;
 }

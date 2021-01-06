@@ -50,7 +50,7 @@ class Movie extends React.Component {
 			<div>
 				<div>
 					<Badge variant="secondary">{details.Rated}</Badge>
-					{details.Runtime}
+					<div>{details.Runtime}</div>
 				</div>
 				<div>{details.Plot}</div>
 				<div>
@@ -97,11 +97,11 @@ class Movie extends React.Component {
 		let nomBtnText = this.props.disabled ? "Nominated" : "Nominate";
 
 		let details = (
-			<Popover class="movie-overlay">
+			<Popover>
 				<Popover.Title>
 					<div className="movie-info">
 						<div>
-							{this.props.movie.Title} ({this.props.movie.Year})
+							<b>{this.props.movie.Title}</b> ({this.props.movie.Year})
 						</div>
 					</div>
 				</Popover.Title>
@@ -123,6 +123,7 @@ class Movie extends React.Component {
 								variant="top"
 								src={this.props.movie.Poster}
 								className="movie-poster"
+								alt={this.props.movie.Title}
 							/>
 							<Button
 								onClick={this.nominate}
