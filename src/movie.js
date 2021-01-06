@@ -23,7 +23,6 @@ class Movie extends React.Component {
 
 		this.getMovieDetails = this.getMovieDetails.bind(this);
 		this.showDetails = this.showDetails.bind(this);
-		this.hideDetails = this.hideDetails.bind(this);
 		this.nominate = this.nominate.bind(this);
 	}
 
@@ -67,28 +66,8 @@ class Movie extends React.Component {
 	}
 
 	showDetails() {
-		let newActiveKey = "";
-
-		if (this.state.activeKey === "") {
-			newActiveKey = this.props.movie.imdbID;
-		}
-
-		this.setState({
-			hovered: true,
-			activeKey: newActiveKey,
-		});
-
-		this.setActiveKey(newActiveKey);
-
 		this.getMovieDetails(this.props.movie.imdbID);
 		return this.state.details;
-	}
-
-	hideDetails() {
-		this.setState({
-			activeKey: "",
-			details: <div></div>,
-		});
 	}
 
 	nominate() {
@@ -118,7 +97,14 @@ class Movie extends React.Component {
 		let nomBtnText = this.props.disabled ? "Nominated" : "Nominate";
 
 		let details = (
-			<Popover>
+			<Popover class="movie-overlay">
+				<Popover.Title>
+					<div className="movie-info">
+						<div>
+							{this.props.movie.Title} ({this.props.movie.Year})
+						</div>
+					</div>
+				</Popover.Title>
 				<Popover.Content>{this.state.details}</Popover.Content>
 			</Popover>
 		);
@@ -128,24 +114,26 @@ class Movie extends React.Component {
 				<OverlayTrigger
 					placement="right"
 					delay={{ show: 250, hide: 400 }}
+					onToggle={this.showDetails}
 					overlay={details}
 				>
-					<div className="movie-container" onMouseEnter={this.showDetails}>
-						<div className="movie">
-							<div>{this.displayPoster()}</div>
-							<div className="movie-info">
-								<div className="movie-title">{this.props.movie.Title}</div>
-								<div>({this.props.movie.Year})</div>
-							</div>
-						</div>
-						<Button
-							onClick={this.nominate}
-							disabled={this.props.disabled}
-							variant={nomBtnVariant}
-							size="sm"
-						>
-							{nomBtnText}
-						</Button>
+					<div className="movie-container">
+						<Card className="movie">
+							<Card.Img
+								variant="top"
+								src={this.props.movie.Poster}
+								className="movie-poster"
+							/>
+							<Button
+								onClick={this.nominate}
+								disabled={this.props.disabled}
+								variant={nomBtnVariant}
+								size="sm"
+								className="nominate-btn"
+							>
+								{nomBtnText}
+							</Button>
+						</Card>
 					</div>
 				</OverlayTrigger>
 			</>

@@ -63,8 +63,6 @@
 }
 
 .search-results {
-	height: 25em;
-	overflow-y: scroll;
 	padding: 0.5em;
 	display: flex;
 	flex-wrap: wrap;
@@ -92,6 +90,10 @@
 	padding-bottom: 1em;
 }
 
+.popover {
+	/* background-color: red !important; */
+}
+
 .nomination-container {
 	padding: 1em 0;
 }
@@ -113,10 +115,13 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	overflow: hidden;
 }
 
 .movie-poster {
-	width: 8em;
+	height: 14em;
+	object-fit: cover;
+	object-position: top;
 }
 
 .movie-info {
@@ -124,8 +129,9 @@
 	flex-direction: column;
 }
 
-.movie-title {
-	font-size: 14px;
+.nominate-btn {
+	width: 102%;
+	height: 102%;
 }
 
 .delete-btn-container {
