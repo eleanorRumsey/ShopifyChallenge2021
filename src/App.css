@@ -45,6 +45,17 @@
 	margin: 0 1em;
 }
 
+.results-message {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.search-spinner {
+	height: 5em !important;
+	width: 5em !important;
+}
+
 .search-and-noms {
 	display: flex;
 	flex-direction: row;

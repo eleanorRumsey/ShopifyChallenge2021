@@ -3,6 +3,7 @@ import Movie from "./movie";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Accordion from "react-bootstrap/Accordion";
+import Spinner from "react-bootstrap/Spinner";
 
 class SearchResults extends React.Component {
 	constructor(props) {
@@ -30,16 +31,26 @@ class SearchResults extends React.Component {
 
 	render() {
 		if (this.props.error) {
-			return <div>Error: {this.props.error.message}</div>;
+			return (
+				<div className="results-message">Error: {this.props.error.message}</div>
+			);
 		} else if (!this.props.isLoaded) {
-			return <div>Loading...</div>;
+			return (
+				<div className="results-message">
+					<Spinner
+						animation="border"
+						role="status"
+						className="search-spinner"
+					/>
+				</div>
+			);
 		} else if (
 			typeof this.props.searchValue === undefined ||
 			this.props.searchValue === ""
 		) {
-			return <div>Search for something</div>;
+			return <div className="results-message">Search for something</div>;
 		} else if (this.props.movieResults === undefined) {
-			return <div>No results found</div>;
+			return <div className="results-message">No results found</div>;
 		} else {
 			return (
 				<div>
